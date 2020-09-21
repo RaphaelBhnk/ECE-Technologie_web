@@ -1,14 +1,11 @@
-// Import a module
-const http = require('http');
+var a = require('./handles')
 
-// Declare an http server
-http.createServer(function (req, res) {
+var express = require('express');
+var app = express();
 
-  // Write a response header
-  res.writeHead(200, {'Content-Type': 'text/plain'});
+app.use('/', a);
 
-  // Write a response content
-  res.end('Hello World !!!!!!\n');
+app.listen(3000, function() {
+	console.log('Example app listening on port 3000!');
+});
 
-// Start the server
-}).listen(8070)
