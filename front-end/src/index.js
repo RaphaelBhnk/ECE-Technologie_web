@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-/*
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -147,25 +147,3 @@ function calculateWinner(squares) {
   }
   return null;
 }
-*/
-
-
-class Formulaire extends React.Component {
-
-  render() {
-    return (
-      <form>
-        <label>Channel:</label><br></br>
-        <input type="text" name="message"/><br></br>
-        <label>Message:</label><br></br>
-        <input type="text" name="channels"/><br></br><br></br>
-        <input type="submit" value="send"/>
-      </form>
-    );
-  }
-}
-
-//------------------------------
-
-
-ReactDOM.render(<Formulaire />, document.getElementById("root"));
