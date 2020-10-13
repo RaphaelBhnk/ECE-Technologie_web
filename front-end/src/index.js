@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-
+// /*
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -124,7 +124,7 @@ class Game extends React.Component {
   }
 }
 
-// ========================================
+//-------
 
 ReactDOM.render(<Game />, document.getElementById("root"));
 
@@ -147,3 +147,54 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+// */
+
+
+///------------------------------------------------------HERE THE FORM SECTION----------------------------------------///
+/*
+
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+    this.state={value2:''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChang = this.handleChang.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  handleChang(event) {
+    this.setState({value2: event.target.value});
+  }
+  handleSubmit(event) {
+    alert('Vous avez envoyé: '+this.state.value2 + ' sur le channel num:'+ this.state.value);
+    event.preventDefault();
+    //Appeler la méthode create de message pour ajouter le message dans la bdd
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+
+          Channel:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          Message:
+          <input type="text" value={this.state.value2} onChange={this.handleChang} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(
+  <NameForm />,
+  document.getElementById('root')
+);
+
+*/
