@@ -12,7 +12,8 @@ const styles = {
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#565E71',
+    backgroundColor: 'rgba(19,19,108)',
+    
     padding: '50px',
   },
   header: {

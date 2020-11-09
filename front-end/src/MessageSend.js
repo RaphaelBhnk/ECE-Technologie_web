@@ -90,32 +90,29 @@ class MessageSend extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
-      texte: ''
+      value: ''
     }
 
-    //this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.contact = this.contact.bind(this)
   }
 
-   handleChange (e) {
-    this.setState({
-      texte:document.getElementById("content").value
-      },()=>this.props.clickHandler(document.getElementById("content").value));  
-    }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
-  handleSubmit (e) {
-    this.setState({
-      texte:document.getElementById("content")
-      },()=>this.props.clickHandler(this.state.texte));  
-    }
+  contact (e) {
+    this.props.clickHandler(this.state.value); 
+  }
+
 
   render(){
     return (
-    <form css={styles.form} onSubmit={this.handleSubmit}>
-      <input type="text" name="content" css={styles.content} />
-       {/* <button className="btn btn-primary" onClick={this.handleChange}>{this.state.texte}</button>  */}
-       <input type="submit" value="Envoyer" /> 
-    </form>);
+    <div css ={styles.form}>
+      <input type="text" name="content" css={styles.content} onChange={this.handleChange}/>
+      <input type="submit" value="Envoi" onClick={this.contact} /> 
+      </div>
+    );
   }
 }
 

@@ -170,48 +170,32 @@ const styles = {
         newMessage:{
           author:'Jack',
           creation:1602844139200,
-          content:`
-          ## 4 - Support message contents in Markdown - Level hard
-          
-          Markdown is the most popular syntax to format text into HTML. It is used
-          by the majority of the project Readme files, to write documentation and to
-          generate websites.
-          
-          I recommand you to use the [unified](https://unifiedjs.com/) which is very
-          powerful and comes with a lot of plugins. You can read the Markdown to HTML
-          guide in the learn section and enrich it with your selection of relevant
-          plugins.
-          
-          Consider adding syntax highlight support with a library like
-          [Prism](https://prismjs.com/).
-          `
+          content:''
         },
         con:1,
-      }
+      };
       this.outputEvent = this.outputEvent.bind(this);
     }
   
-    outputEvent(text) {
-       this.setState({ con:this.state.con+1 });
-       this.setState(prevState => {
-         let n = Object.assign({}, prevState.newMessage);  // creating copy of state variable jasper
-         n.content = this.state.con;                     // update the name property, assign a new value                 
-         return { n };                                 // return new object jasper object
-       });
-      this.setState(prevState => {
-        let list = Object.assign({}, prevState.listMessages);  // creating copy of state variable jasper
-        list[2].content = "qaaaa"                     // update the name property, assign a new value                 
-        
-      return { list };                                 // return new object jasper object
-      }) 
+    outputEvent(event) {
+       this.setState(prevState => ({
+        newMessage: {                   // object that we want to update
+            ...prevState.newMessage,    // keep all other key-value pairs
+            content: event  , 
+            creation:1602832138892    // update the value of specific key
+        }
+    }),() => {    
+      const aaa=this.state.listMessages.concat(this.state.newMessage)
+      this.setState({listMessages:aaa}) })
+
     }
 
     render(){
       return (<div css={styles.channel}>
       <Messages messages={this.state.listMessages} channel="Fake channel"/>
       <MessageSend clickHandler={this.outputEvent} />
+
     </div>);
   }
   }
-
   export default Channel

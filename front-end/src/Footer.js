@@ -25,7 +25,7 @@ const styles = {
     backgroundColor: 'blue',
   },
   footer: {
-    height: '30px',
+    height: '57px',
     backgroundColor: 'rgba(255,255,255,.3)',
     flexShrink: 0,
   },
