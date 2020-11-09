@@ -20,7 +20,6 @@ const styles = {
       backgroundColor: 'blue',
     }}
 
-
 class Header extends React.Component{
 
     render(){

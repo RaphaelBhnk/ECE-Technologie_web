@@ -13,7 +13,7 @@ class Footer extends React.Component{
 
     render(){
         return <footer className="App-footer" style={styles.footer}>
-        footer
+        <h1>footer</h1>
       </footer>
     }
   }
