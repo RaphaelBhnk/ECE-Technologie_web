@@ -9,7 +9,7 @@ const styles = {
   footer: {
     border: ' 2px solid black',
     height: '57px',
-    backgroundColor: 'rgba(176,216,255)',
+    backgroundColor: 'rgba(180,180,180)',
     flexShrink: 0,
   },
  

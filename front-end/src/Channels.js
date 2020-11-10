@@ -7,8 +7,9 @@ import { jsx } from '@emotion/core'
 
 const styles = {
       channels: {
+        border: '2px solid black',
         height: '100%',
-        backgroundColor: 'rgba(255,187,221)',
+        backgroundColor: 'rgba(140,140,140)',
         minWidth: '200px',
       },
     }

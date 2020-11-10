@@ -9,7 +9,7 @@ const styles = {
   header: {
     border: '2px solid black',
     height: '60px',
-    backgroundColor: 'rgba(176,216,255)',
+    backgroundColor: 'rgba(180,180,180)',
     flexShrink: 0,
   },
   headerLogIn: {
