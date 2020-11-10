@@ -3,6 +3,7 @@ import {useState} from 'react';
 import './App.css';
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import './../node_modules/@fortawesome/fontawesome-free/css/all.css'
 const styles = {
   root: {
     boxSizing: 'border-box',
@@ -110,7 +111,8 @@ class MessageSend extends React.Component{
     return (
     <div css ={styles.form}>
       <input type="text" name="content" css={styles.content} onChange={this.handleChange}/>
-      <input type="submit" value="Envoi" onClick={this.contact} /> 
+      <button onClick={this.contact}><i class="far fa-paper-plane"></i></button> 
+      {/* <input type="submit" value="Envoi" onClick={this.contact} />  */}
       </div>
     );
   }

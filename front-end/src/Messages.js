@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import moment from 'moment';
+
 const styles = {
   root: {
     boxSizing: 'border-box',
@@ -98,7 +100,7 @@ class Messages extends React.Component{
           <p>
             <span>{message.author}</span>
             {' '}
-            <span>{(new Date(message.creation)).toString()}</span>
+            <span>{(moment(new Date(message.creation))).format('lll').toString()}</span>
           </p>
           <div>
             {

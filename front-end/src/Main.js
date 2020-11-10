@@ -33,6 +33,7 @@ const styles = {
         flexShrink: 0,
       },
       main: {
+        
         backgroundColor: '#373B44',
         flex: '1 1 auto',
         display: 'flex',
@@ -93,12 +94,8 @@ class Main extends React.Component{
   
     render(){
         return <main className="App-main" css={styles.main}>
-        <div css={styles.channels}>
-            <Channels/>
-        </div>
-        <div css={styles.channel}>
+        <Channels/>
         <Channel  />
-        </div>
       </main>
     }
   }
