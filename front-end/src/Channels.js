@@ -1,35 +1,46 @@
-import React from "react";
-
-import { useState } from "react";
-import "./App.css";
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx } from '@emotion/core'
+// Layout
+import Link from '@material-ui/core/Link'
 
 const styles = {
-  channels: {
-    border: "2px solid black",
-    height: "100%",
-    backgroundColor: "rgba(140,140,140)",
-    minWidth: "200px",
+  root: {
+    minWidth: '200px',
   },
-};
-
-class Channels extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      texte: "",
-    };
-  }
-
-  render() {
-    return (
-      <div css={styles.channels}>
-        <h1>Discussions</h1>
-        <p>En Travaux ! </p>
-      </div>
-    );
+  channel: {
+    padding: '.2rem .5rem',
+    whiteSpace: 'nowrap', 
   }
 }
 
-export default Channels;
+export default ({
+  onChannel
+}) => {
+  const [channels, setChannels] = useState([])
+  useEffect( () => {
+    const fetch = async () => {
+      const {data: channels} = await axios.get('http://localhost:3001/channels')
+      setChannels(channels)
+    }
+    fetch()
+  }, [])
+  return (
+    <ul style={styles.root}>
+      { channels.map( (channel, i) => (
+        <li key={i} css={styles.channel}>
+          <Link
+            href="#"
+            onClick={ (e) => {
+              e.preventDefault()
+              onChannel(channel)
+            }}
+            >
+            {channel.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
