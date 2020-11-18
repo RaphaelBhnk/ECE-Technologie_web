@@ -5,12 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 /** @jsx jsx */
@@ -90,10 +84,7 @@ export default ({
         </li>
       ))}
       </List>
-     
- 
     </div>);
-
 
   const smallerThan400 = useMediaPredicate("(max-width: 400px)");
   const biggerThan400 = useMediaPredicate("(min-width: 401px)");
@@ -115,7 +106,7 @@ export default ({
         </li>
       ))}
     </ul>}
-    {smallerThan400 &&     <div>
+    {smallerThan400 &&  <div>
       {['Channels'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>

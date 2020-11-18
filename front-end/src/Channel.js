@@ -14,7 +14,7 @@ import { useMediaPredicate } from "react-media-hook";
 
 const useStyles = (theme) => ({
   root: {
-    height: '100%',
+    height: '90%',
     flex: '1 1 auto',
     display: 'flex',
     flexDirection: 'column',
@@ -23,7 +23,7 @@ const useStyles = (theme) => ({
   },
   rootL: {
     height: '100%',
- //   flex: '1 1 auto',
+    flex: '1 1 auto',
     display: 'flex',
     flexDirection: 'column',
     background: 'rgba(0,0,0,.2)',

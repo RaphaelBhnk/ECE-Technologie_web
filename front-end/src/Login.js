@@ -43,7 +43,7 @@ export default ({
         <fieldset>
           <Button variant="outlined" color="primary" type="submit" value="Connexion" onClick={ (e) => {
             e.stopPropagation()
-            onUser({username: 'adrien'})
+            onUser({username: 'david'})
           }} > 
             Connexion 
           </Button>  
