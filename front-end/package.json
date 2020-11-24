@@ -14,6 +14,7 @@
     "dayjs": "^1.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-media-hook": "^0.4.7",
     "react-scripts": "3.4.3",
     "rehype-stringify": "^8.0.0",
     "remark-parse": "^9.0.0",
