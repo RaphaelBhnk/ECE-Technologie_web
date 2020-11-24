@@ -3,7 +3,6 @@ import {} from 'react';
 import { jsx } from '@emotion/core'
 // Layout
 import { useTheme } from '@material-ui/core/styles';
-import { Button, TextField } from '@material-ui/core';
 
 const useStyles = (theme) => ({
   root: {
@@ -35,18 +34,18 @@ export default ({
     <div css={styles.root}>
       <div>
         <fieldset>
-          <TextField color="primary" id="outlined-size-normal" label="Username" variant="filled" />
+          <label htmlFor="username">username: </label>
+          <input id="username" name="username" />
         </fieldset>
         <fieldset>
-          <TextField color="primary" id="outlined-size-normal" label="Password" type="password" variant="filled" />
+          <label htmlFor="password">password:</label>
+          <input id="password" name="password" type="password" />
         </fieldset>
         <fieldset>
-          <Button variant="outlined" color="primary" type="submit" value="Connexion" onClick={ (e) => {
+          <input type="submit" value="login" onClick={ (e) => {
             e.stopPropagation()
             onUser({username: 'david'})
-          }} > 
-            Connexion 
-          </Button>  
+          }} />
         </fieldset>
       </div>
     </div>
