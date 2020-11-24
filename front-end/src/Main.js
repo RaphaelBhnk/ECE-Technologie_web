@@ -21,9 +21,10 @@ export default () => {
   const fetchChannel = async (channel) => {
     setChannel(channel)
   }
+  
   return (
     <main css={styles.main}>
-      <Channels onChannel={fetchChannel} />
+      <Channels onChannel={fetchChannel} /> 
       {channel ? <Channel channel={channel} messages={[]} /> : <Welcome />}
     </main>
   );
