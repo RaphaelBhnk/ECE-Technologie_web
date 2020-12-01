@@ -10,8 +10,10 @@ import axios from 'axios'
 import { jsx } from '@emotion/core'
 // Layout
 import { useTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 import Link from '@material-ui/core/link'
+import { Input } from '@material-ui/core';
 
 const base64URLEncode = (str) => {
   return str.toString('base64')
@@ -145,9 +147,26 @@ export default ({
         }
       }
       fetch()
-    } )
+    }, [] )
     return (
-      <div css={styles.root}>Loading tokens</div>
+      <div css={styles.root}>
+        <div>
+          <form css={styles.form}>
+            <fieldset>
+             <Input placeholder="Login" id="username" inputProps={{ 'aria-label': 'description' }} color="primary" required/> 
+            </fieldset>
+            <fieldset>
+             <Input placeholder="Password" id="password" inputProps={{ 'aria-label': 'description' }} color="primary" type="password"/> 
+            </fieldset>
+            <Button color="primary" variant='outlined' type="submit" value="login" onClick={ (e) => {
+              e.stopPropagation()
+              onUser({username: 'weepizz'})
+            }}>
+              Login
+            </Button>
+          </form>
+        </div>
+      </div>
     )
   }
 }
