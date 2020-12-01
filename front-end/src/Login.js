@@ -58,14 +58,15 @@ const Redirect = ({
     e.stopPropagation()
     const code_challenge = base64URLEncode(sha256(codeVerifier))
     const url = [
-      '${config.authorization_endpoint}?',
-      'client_id=${config.client_id}&',
-      'scope=${config.scope}&',
-      'response_type=code&',
-      'redirect_uri=${config.redirect_uri}&',
-      'code_challenge=${code_challenge}&',
-      'code_challenge_method=S256',
-    ].join('')
+      `${config.authorization_endpoint}?`,
+      `client_id=${config.client_id}&`,
+      `scope=${config.scope}&`,
+      `response_type=code&`,
+      `redirect_uri=${config.redirect_uri}&`,
+      `code_challenge=${code_challenge}&`,
+      `code_challenge_method=S256`,
+    ].join(``)
+    console.log("url:" + url)
     window.location = url
   }
   return (
@@ -132,6 +133,7 @@ export default ({
             grant_type: 'authorization_code',
             client_id: '${config.client_id}',
             code_verifier: '${codeVerifier}',
+            client_secret: 'ZXhhbXBsZS1hcHAtc2VjcmV0', 
             redirect_uri: '$config.redirect_uri}',
             code: '${code}',
           }))
