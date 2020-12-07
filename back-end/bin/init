@@ -10,6 +10,8 @@ const config = {
   await app.listen(config.port);
   await Promise.all([{
     name: 'Channel 1',
+    propriétaire:'raphael.bouhnik@edu.ece.fr',
+    membres:[],
     messages: [{
       author: 'sergei',
       creation: 1602831101929,
@@ -85,9 +87,12 @@ const config = {
       Consider adding syntax highlight support with a library like
       [Prism](https://prismjs.com/).
       `.replace(/^ {6}/gm,'').replace(/^ {6}/gm,''),
+
     }]
   },{
     name: 'Channel 2',
+    propriétaire:'raphael.bouhnik@edu.ece.f',
+    membres:['zzzz','raphael.bouhnik@edu.ece.fr','aa'],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,
@@ -103,6 +108,8 @@ const config = {
     }]
   },{
     name: 'Channel 3',
+    propriétaire:'raphael.bouhnik@edu.ece.fr',
+    membres:[],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,
@@ -118,8 +125,9 @@ const config = {
     }]
   }].map( async (channel) => {
     const {data: {id}} = await axios.post(`http://localhost:${config.port}/channels`, {
-      name: channel.name
-    })
+      name: channel.name,
+      propriétaire:channel.propriétaire,
+      membres:channel.membres    })
     return Promise.all( channel.messages.map( async (message) => {
       await axios.post(`http://localhost:${config.port}/channels/${id}/messages`, message)
     }))
