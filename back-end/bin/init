@@ -109,7 +109,7 @@ const config = {
   },{
     name: 'Channel 3',
     propriétaire:'raphael.bouhnik@edu.ece.fr',
-    membres:[],
+    membres:['aa','ccc'],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,

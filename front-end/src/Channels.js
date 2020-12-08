@@ -40,7 +40,7 @@ export default () => {
   } = useContext(Context)
   const createChannel = async () => {
     var nameChannel=prompt("Please enter the name of the channel:")
-    const {data: channel} = await axios.post(
+    const {data: channels} = await axios.post(
       `http://localhost:3001/channels`
     , {
       name: nameChannel,

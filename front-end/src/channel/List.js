@@ -1,6 +1,11 @@
-import {forwardRef, useImperativeHandle, useLayoutEffect, useRef} from 'react'
+import {forwardRef,useEffect, useImperativeHandle, useLayoutEffect, useRef,useContext} from 'react'
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import Context from '../Context'
+import Button from '@material-ui/core/Button'
+import axios from 'axios';
+import { useHistory } from 'react-router-dom'
+
 // Layout
 import { useTheme } from '@material-ui/core/styles';
 // Markdown
@@ -60,12 +65,38 @@ export default forwardRef(({
   onScrollDown,
 }, ref) => {
   const styles = useStyles(useTheme())
-  // Expose the `scroll` action
+  // Expose the scroll action
   useImperativeHandle(ref, () => ({
     scroll: scroll
   }));
+  const {
+    oauth,
+     setChannels,
+     channels
+  } = useContext(Context)
   const rootEl = useRef(null)
   const scrollEl = useRef(null)
+  const history = useHistory()
+
+ const addMember = async()=>{
+    var t= channel
+    var k=prompt("Ajoutez un membre:")
+    t.name=k
+    try {
+      
+      const {data: channels} = axios.put(
+        `//localhost:3001/channels/${t.id}`
+      , {
+        name:t.name,
+        propriétaire:t.propriétaire,
+        membres:t.membres
+      })
+
+      history.push(`/channels`)
+      
+    } catch (error) {
+    }
+  }
   const scroll = () => {
     scrollEl.current.scrollIntoView()
   }
@@ -86,9 +117,16 @@ export default forwardRef(({
     rootNode.addEventListener('scroll', handleScroll)
     return () => rootNode.removeEventListener('scroll', handleScroll)
   })
+
   return (
     <div css={styles.root} ref={rootEl}>
       <h1>Messages for {channel.name}</h1>
+      {
+      channel.propriétaire===oauth.email ? <Button variant="contained" color="primary" onClick={addMember} >
+      Add a member
+    </Button>
+     : <p></p>
+      }
       <ul>
         { messages.map( (message, i) => {
             const {contents: content} = unified()
