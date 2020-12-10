@@ -1,13 +1,18 @@
-
+import Gravatar from 'react-gravatar'
+import SettingsIcon from '@material-ui/icons/Settings';
 import { useContext } from 'react'
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 // Layout
 import { useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import Context from './Context'
+
+import {
+  useHistory
+} from "react-router-dom";
 
 const useStyles = (theme) => ({
   header: {
@@ -25,13 +30,22 @@ const useStyles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'none !important',
     },
-  }
+  },
+  info_perso: {
+    absolute: 'left',
+    padding: '200px',
+    marginRight:'2px',
+  },
+  out: {
+    float: 'right',
+  },
 })
 
 export default ({
   drawerToggleListener
 }) => {
   const styles = useStyles(useTheme())
+  const history = useHistory();
   const {
     oauth, setOauth,
     drawerVisible, setDrawerVisible
@@ -43,6 +57,9 @@ export default ({
     e.stopPropagation()
     setOauth(null)
   }
+  const onClickGoToWelcome = (e) => {
+    history.push('/channels')
+  }
   return (
     <header css={styles.header}>
       <IconButton
@@ -53,12 +70,18 @@ export default ({
       >
         <MenuIcon />
       </IconButton>
-      Header
+      
       {
         oauth ?
           <span>
-            {oauth.email}
-            <Link onClick={onClickLogout}>logout</Link>
+            <span css={styles.info_perso}>
+              <Gravatar email={oauth.email} size={35} default='identicon' />
+              {oauth.email}
+            </span>
+            <span css={styles.out}>
+              <SettingsIcon onClick={onClickGoToWelcome} fontSize="large" color="primary"></SettingsIcon>
+              <ExitToAppIcon onClick={onClickLogout} fontSize="large" color="primary">logout</ExitToAppIcon>
+            </span >
           </span>
         :
           <span>new user</span>
