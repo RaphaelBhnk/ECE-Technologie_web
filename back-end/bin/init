@@ -1,7 +1,8 @@
 #!env node
 
 const axios = require('axios')
-const app = require('../lib/app')
+const app = require('../lib/app');
+const { admin } = require('../lib/db');
 const config = {
   port: 3001
 };
@@ -10,8 +11,9 @@ const config = {
   await app.listen(config.port);
   await Promise.all([{
     name: 'Channel 1',
-    propriétaire:'raphael.bouhnik@edu.ece.fr',
-    membres:[],
+    owner:'raphael.bouhnik@edu.ece.f',
+    administrators:['raphael.bouhnik@edu.ece.fr',''],
+    members:['raphael.bouhnik@edu.ece.fr'],
     messages: [{
       author: 'sergei',
       creation: 1602831101929,
@@ -91,8 +93,9 @@ const config = {
     }]
   },{
     name: 'Channel 2',
-    propriétaire:'raphael.bouhnik@edu.ece.f',
-    membres:['zzzz','raphael.bouhnik@edu.ece.fr','aa'],
+    owner:'raphael.bouhnik@edu.ece.f',
+    administrators:['raphael.bouhnik@edu.ece.fr',''],
+    members:['zzzz','raphael.bouhnik@edu.ece.fr','aa'],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,
@@ -108,8 +111,9 @@ const config = {
     }]
   },{
     name: 'Channel 3',
-    propriétaire:'raphael.bouhnik@edu.ece.fr',
-    membres:['aa','ccc'],
+    owner:'raphael.bouhnik@edu.ece.fr',
+    administrators:['raphael.bouhnik@edu.ece.f',''],
+    members:['aa','ccc'],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,
@@ -126,8 +130,9 @@ const config = {
   }].map( async (channel) => {
     const {data: {id}} = await axios.post(`http://localhost:${config.port}/channels`, {
       name: channel.name,
-      propriétaire:channel.propriétaire,
-      membres:channel.membres    })
+      owner:channel.owner,
+      members:channel.members,
+      administrators:channel.administrators   })
     return Promise.all( channel.messages.map( async (message) => {
       await axios.post(`http://localhost:${config.port}/channels/${id}/messages`, message)
     }))
