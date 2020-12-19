@@ -55,6 +55,9 @@ const useStyles = (theme) => ({
       backgroundColor: 'rgba(255,255,255,.05)',
     },
   },
+  myMessage: {
+    textAlign: 'right',
+  },
   fabWrapper: {
     position: 'absolute',
     right: 0,
@@ -259,13 +262,21 @@ export default forwardRef(({
             .processSync(message.content)
             return (
               <li key={i} css={styles.message}>
-                <p>
+                {message.author ===  oauth.email ? <p css={styles.myMessage}>
+                    <span>{message.author}</span>
+                    {' - '}
+                    <span>{dayjs().calendar(message.creation)}</span>
+                  </p> 
+                  : <p>
                   <span>{message.author}</span>
                   {' - '}
                   <span>{dayjs().calendar(message.creation)}</span>
-                </p>
-                <div dangerouslySetInnerHTML={{__html: content}}>
-                </div>
+                </p>}
+
+                {message.author ===  oauth.email ? <div css={styles.myMessage} dangerouslySetInnerHTML={{__html: content}}>
+                  </div>
+                  : <div dangerouslySetInnerHTML={{__html: content}}>
+                  </div>} 
               </li>
             )
         })}
