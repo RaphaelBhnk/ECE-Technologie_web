@@ -158,10 +158,19 @@ export default ({
                                   </span>
                 
                                   : <span>
+                                  {
+                                    currentUser.avatar==='9' ? <span css={styles.info_perso}>
                                     <img src={icon9} height='30px' />
                                     {currentUser.username}
                                     {currentUser.bio}
                                     </span>
+
+                                    : <span css={styles.info_perso}>
+                                    <Gravatar email={oauth.email} size={35} default='identicon' />
+                                    {currentUser.email}
+                                    {currentUser.bio}
+                                    </span>
+                                  } </span>
                                 } </span>
                               } </span>
                             } </span>
