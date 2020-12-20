@@ -56,8 +56,7 @@ export default () => {
   const styles = useStyles(theme)
   const alwaysOpen = useMediaQuery(theme.breakpoints.up('sm'))
   const isDrawerVisible = alwaysOpen || drawerVisible
-
-
+  //We decided to use the useEffect hook in order to create a currentUser, This way we will be able to call currentUser anywhere in the code
   useEffect( () => {
     const fetch = async () => {
       try{
@@ -82,7 +81,6 @@ export default () => {
     fetch()
   }, [setallUsers,allUsers,settet,tet,oauth,setCurrentCUser,currentCUser])
   return (
-
     tet===0?<main>
     <Welcome/></main>
     :<main css={styles.root}>

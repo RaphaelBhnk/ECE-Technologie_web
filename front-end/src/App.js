@@ -33,6 +33,7 @@ export default () => {
   const drawerToggleListener = () => {
     setDrawerMobileVisible(!drawerMobileVisible)
   }
+  //We defined all the route here 
   return (
     <div className="App" css={styles.root}>
       <Header drawerToggleListener={drawerToggleListener}/>

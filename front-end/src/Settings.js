@@ -8,8 +8,6 @@ import { jsx } from '@emotion/core'
 // Layout
 import { useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -59,7 +57,7 @@ const useStyles = (theme) => ({
   element: {
     marginBottom: '20px',
   },
-  gravatarFormPart: {
+  gravatarPartForm: {
     float: 'center',
     display: 'flex',
     flexWrap: 'wrap',
@@ -80,17 +78,10 @@ export default () => {
   const {
     oauth,
   } = useContext(Context)
-  const [state, setState] = React.useState({
-    checkedA: true,
-  })
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  }
   const history = useHistory();
   const updateUser = async() => {
     var user_name= document.getElementById("outlined-textarea username").value
     var user_bio= document.getElementById("outlined-textarea bio").value
-    var user_theme_registered= document.getElementById("switch mode").value
     var id_photo= document.getElementById("outlined-textarea id_photo").value
     const {data: users} = await axios.put (
       `http://localhost:3001/users/${oauth.email}`
@@ -98,7 +89,6 @@ export default () => {
         username: user_name,
         email: oauth.email,
         bio: user_bio,
-        theme_value: user_theme_registered,
         avatar: id_photo
       })
       history.push('/')
@@ -141,7 +131,7 @@ export default () => {
       title: '9',
     }
   ]
-  
+
   return (
     <div css={styles.root}>
       <Grid container css={styles.container} spacing={5} >
@@ -160,12 +150,9 @@ export default () => {
                 <div css={styles.element}>
                   <TextField  name="bio" id="outlined-textarea bio" label="Bio" placeholder="" multiline variant="outlined" required/>
                 </div>
-                <div css={styles.element}>
-                  <FormControlLabel control={ <Switch checked={state.checkedA} onChange={handleChange} name="checkedA" color="primary" id="switch mode"/> } label="Dark Thme" />
-                </div>
               </div>
             </div>
-            <div css={styles.gravatarFormPart}>
+            <div css={styles.gravatarPartForm}>
               <h4 css={styles.element}> Choose your Avatar among our own Selection (if none is good for you, enter 0): </h4>
               <div css={styles.element}>
                   <TextField  name="id_photo" id="outlined-textarea id_photo" className="E" label="Photo's id" placeholder="" multiline variant="outlined" />
