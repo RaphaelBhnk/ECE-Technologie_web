@@ -11,9 +11,9 @@ const config = {
   await app.listen(config.port);
   await Promise.all([{
     name: 'Channel 1',
-    owner:'raphael.bouhnik@edu.ece.f',
-    administrators:['raphael.bouhnik@edu.ece.fr',''],
-    members:['raphael.bouhnik@edu.ece.fr'],
+    owner:'adrien.zychowski@gmail.com',
+    administrators:['david@adaltas.com',''],
+    members:['adrien.zychowski@gmail.com'],
     messages: [{
       author: 'sergei',
       creation: 1602831101929,
@@ -93,9 +93,9 @@ const config = {
     }]
   },{
     name: 'Channel 2',
-    owner:'raphael.bouhnik@edu.ece.f',
-    administrators:['raphael.bouhnik@edu.ece.fr',''],
-    members:['zzzz','raphael.bouhnik@edu.ece.fr','aa'],
+    owner:'david@adaltas.com',
+    administrators:['adrien.zychowski@gmail.com',''],
+    members:['zzzz','adrien.zychowski@gmail.com','aa'],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,
@@ -111,9 +111,9 @@ const config = {
     }]
   },{
     name: 'Channel 3',
-    owner:'raphael.bouhnik@edu.ece.fr',
-    administrators:['raphael.bouhnik@edu.ece.f',''],
-    members:['aa','ccc'],
+    owner:'adrien.zychowski@gmail.com',
+    administrators:['adrien.zychowski@gmail.com',''],
+    members:['aa','ccc','david@adaltas.com'],
     messages: [{
       author: 'sergei',
       creation: 1602223579200,

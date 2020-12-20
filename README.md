@@ -1,7 +1,8 @@
 
 # Chat application - final project
 
-*presentation, introduction, ...*
+Welcome to our final project web application ! After some hard work from our part, the application work correctly.
+Enjoy it !
 
 ## Usage
 
@@ -60,48 +61,53 @@
 
 ## Author
 
-*name, email, ...*
+Raphael BOUHNIK, raphael.bouhnik@edu.ece.fr && Adrien ZYCHOWSKI, adrien.zychowski@edu.ece.fr
 
 ## Tasks
 
 Project management
 
 * Naming convention   
-  *place your comments*
+  We respected the community conventions as well as we could.
 * Project structure   
-  *place your comments*
+  We used simple name files/services and components, so the structure is well understandable. From the start of the project, we added Edit.js and Settings.js. Both names are easisy understandable.
 * Code quality   
-  *place your comments*
+  We took care about the understandability and we used 'Prettier' to identitate proprely
 * Design, UX   
-  *place your comments*
+  We used a lot of material UI stuff, somes PopUps and one backgroundImage for the connexion with oauth
 * Git and DevOps   
-  *place your comments*
+  We used one Branch each with our names, each commit was for one new feature.
 
 Application development
 
 * Welcome screens   
-  *place your comments*
+  The user arrived on the Login page where he can found the oauth login button. We provided a backgroundImage with one Lampe.
 * New channel creation   
-  *place your comments*
+  We inserted a button "ADD CHANNEL" that, when clicked, shows a popup, which enable the user to create his own channels.
 * Channel membership and access   
-  *place your comments*
+  We have an owner attribute for each channel. If the user does not exist in the data base, he should create an account and his email will be x linked with his account
 * Ressource access control   
-  *place your comments*
+  A user can only gain access to the channel he created, the channel where he is administrator and the channels he was invited to. Moreover, we created another status called 'Administrator' which allows the user to invite new members in the channels and make someone alse administrator as well.
 * Invite users to channels   
-  *place your comments*
+  The creator and administrators can add new members to channel, the new members will have no right except to write message inside the channel.
 * Message modification   
-  *place your comments*
+  We created a 'modif icon' for the messages of the user, which allow the user to edit the first message he sent.
 * Message removal   
-  *place your comments*
+  We created a 'delete icon' for the messages of the user, but this button actually does not work.
 * Account settings   
-  *place your comments*
+  We created a Setting page, which allows the user to update his data. All labels must be filled before clicking the 'CREATE' button. He can change his Username, his bio and his avatar's photo among thoses we created. When he clicked the 'CREATE' button, all the data will be update automatically and he will be able to see his changes in the Header if he changed his photo or bio.
 * Gravatar integration   
-  *place your comments*
+  If a user does not have a Gravatar account, we will displayed a random idendicon image in the Header when he first register in the app. If he has a Gravatar Account, his photo will load in the Header. If he decided to change his photo when creating his account/updating his account, his photo will be replace by the photo his picked. If he decided to retake his gravatar photo, he has to fill '0' in the form.
 * Avatar selection   
-  *place your comments*
+  We provided a 9 choices image, and the user can decide if he want to take one as his avatar image by doing it from the form.
 * Personal custom avatar   
-  *place your comments*
+  We did not achieve this task.
 
 ## Bonus
 
-*place your comments*
+Three Status : 
+-"Owner" : he can rename a channel/ Add member / make someone Administrator / write messages
+-"Administrator" : he can :  Add member / make someone Administrator/ write messages
+-"Member" : he can :  he can write messages
+
+In the bin/init of the back-end, we decided to put this email: 'david@adaltas.com' as Administrator in Channel 1, Owner in Channel 2 and member in Channel 3. So you will be able to see the difference. 

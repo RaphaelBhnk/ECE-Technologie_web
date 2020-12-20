@@ -33,20 +33,15 @@ const useStyles = (theme) => ({
   },
   drawerVisible: {
     display: 'block',
-  },
-  new:{
-    height:'30px',
-    float:'right'
   }
 })
 
 export default () => {
   const {
-    currentChannel,
     oauth,
     drawerVisible,
-    tet,
-    settet,
+    haveAccount,
+    sethaveAccount,
     allUsers,
     setallUsers,
     setCurrentCUser,
@@ -56,7 +51,7 @@ export default () => {
   const styles = useStyles(theme)
   const alwaysOpen = useMediaQuery(theme.breakpoints.up('sm'))
   const isDrawerVisible = alwaysOpen || drawerVisible
-  //We decided to use the useEffect hook in order to create a currentUser, This way we will be able to call currentUser anywhere in the code
+  //We decided to use the useEffect hook in order to set a currentUser, This way we will be able to use currentUser anywhere in the code.
   useEffect( () => {
     const fetch = async () => {
       try{
@@ -73,16 +68,18 @@ export default () => {
             setCurrentCUser(allUsers[i])
           }
         }
-        settet(a)
+        sethaveAccount(a)
       }catch(err){
         console.error(err)
       }
     }
     fetch()
-  }, [setallUsers,allUsers,settet,tet,oauth,setCurrentCUser,currentCUser])
+  }, [setallUsers,allUsers,sethaveAccount,haveAccount,oauth,setCurrentCUser,currentCUser])
   return (
-    tet===0?<main>
+    //If haveAccunt === 0, we displayed the Welcome page, where the user has to create an account
+    haveAccount===0?<main>
     <Welcome/></main>
+    //If haveAccount !== 0, we show the settings page with channels on the left.
     :<main css={styles.root}>
       {
         <Drawer
