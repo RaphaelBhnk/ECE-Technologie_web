@@ -117,7 +117,7 @@ export default () => {
                <form className={classes.root} noValidate autoComplete="off">
                <TextField id="filled-basic create" label="Channel name" variant="filled" />
                <div className={classes.root}>
-               <Button onClick={createChannel} href="#">CREATE</Button>
+               <Button onClick={createChannel}>CREATE</Button>
                 </div>
                 </form>
                </div>
