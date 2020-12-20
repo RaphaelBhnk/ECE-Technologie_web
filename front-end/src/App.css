@@ -4,6 +4,10 @@ body {
   background-size: cover;
   height: 100vh;
 }
+button{
+  position: 'absolute';
+  right: '35px',
+}
 
 .hhh {
   text-align: center;

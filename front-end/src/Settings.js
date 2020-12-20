@@ -78,7 +78,7 @@ const useStyles = (theme) => ({
 export default () => {
   const styles = useStyles(useTheme())
   const {
-    oauth
+    oauth,
   } = useContext(Context)
   const [state, setState] = React.useState({
     checkedA: true,
@@ -87,13 +87,13 @@ export default () => {
     setState({ ...state, [event.target.name]: event.target.checked });
   }
   const history = useHistory();
-  const createUser = async() => {
+  const updateUser = async() => {
     var user_name= document.getElementById("outlined-textarea username").value
     var user_bio= document.getElementById("outlined-textarea bio").value
     var user_theme_registered= document.getElementById("switch mode").value
     var id_photo= document.getElementById("outlined-textarea id_photo").value
-    const {data: users} = await axios.post (
-      `http://localhost:3001/users`
+    const {data: users} = await axios.put (
+      `http://localhost:3001/users/${oauth.email}`
       ,{
         username: user_name,
         email: oauth.email,
@@ -141,12 +141,12 @@ export default () => {
       title: '9',
     }
   ]
-
+  
   return (
     <div css={styles.root}>
       <Grid container css={styles.container} spacing={5} >
         <Grid item xs={12} >
-          <Paper css={styles.paper}>New User Registration</Paper>
+          <Paper css={styles.paper}>My Settings</Paper>
         </Grid>
       </Grid>
       <form>
@@ -161,14 +161,14 @@ export default () => {
                   <TextField  name="bio" id="outlined-textarea bio" label="Bio" placeholder="" multiline variant="outlined" required/>
                 </div>
                 <div css={styles.element}>
-                  <FormControlLabel control={ <Switch checked={state.checkedA} onChange={handleChange} name="checkedA" color="primary" id="switch mode"/> } label="Dark Thme"/>
+                  <FormControlLabel control={ <Switch checked={state.checkedA} onChange={handleChange} name="checkedA" color="primary" id="switch mode"/> } label="Dark Thme" />
                 </div>
               </div>
             </div>
             <div css={styles.gravatarFormPart}>
-            <h4 css={styles.element}> Choose your Avatar among our own Selection (if none is good for you, enter 0): </h4>
+              <h4 css={styles.element}> Choose your Avatar among our own Selection (if none is good for you, enter 0): </h4>
               <div css={styles.element}>
-                  <TextField  name="id_photo" id="outlined-textarea id_photo" className="E" label="Photo's id" placeholder="" multiline variant="outlined" required/>
+                  <TextField  name="id_photo" id="outlined-textarea id_photo" className="E" label="Photo's id" placeholder="" multiline variant="outlined" />
               </div>
               <GridList css={styles.gridList}>
                 {tileData.map((tile) => (
@@ -191,8 +191,8 @@ export default () => {
             <Grid item xs > </Grid>
               <Grid item xs={6} >
                 <Paper css={styles.paper}>
-                  <Button variant="outlined" color="primary"  startIcon={<SaveIcon />} onClick={createUser} size="large">
-                    CREATE
+                  <Button variant="outlined" color="primary"  startIcon={<SaveIcon />} onClick={updateUser} size="large">
+                    UPDATE 
                   </Button>
                 </Paper>
               </Grid>

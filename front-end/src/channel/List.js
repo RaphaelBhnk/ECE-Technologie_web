@@ -6,6 +6,7 @@ import Context from '../Context'
 import Button from '@material-ui/core/Button'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
+import Edit from './Edit'
 //Menu
 import React from 'react';
 import { TextField } from '@material-ui/core';
@@ -54,6 +55,9 @@ const useStyles = (theme) => ({
     ':hover': {
       backgroundColor: 'rgba(255,255,255,.05)',
     },
+  },
+  myMessage: {
+    textAlign: 'right',
   },
   fabWrapper: {
     position: 'absolute',
@@ -105,6 +109,7 @@ export default forwardRef(({
   const {
     oauth,
      setChannels,
+     currentUser,
      channels
   } = useContext(Context)
   const rootEl = useRef(null)
@@ -259,13 +264,25 @@ export default forwardRef(({
             .processSync(message.content)
             return (
               <li key={i} css={styles.message}>
-                <p>
+                {message.author ===  oauth.email ?<p css={styles.myMessage}>
+                
+                    <span>{currentUser.username}</span>
+                    {' - '}
+                    <span>{dayjs().calendar(message.creation)}</span>
+                    
+                  </p> 
+                  : <p>
                   <span>{message.author}</span>
                   {' - '}
                   <span>{dayjs().calendar(message.creation)}</span>
-                </p>
-                <div dangerouslySetInnerHTML={{__html: content}}>
-                </div>
+                </p>}
+
+                {message.author ===  oauth.email ? <div><div><Edit messageCreation={message.creation} channel={channel}/>
+                <br></br>
+                </div><div css={styles.myMessage} dangerouslySetInnerHTML={{__html: content}}></div>
+                  </div>
+                  : <div dangerouslySetInnerHTML={{__html: content}}>
+                  </div>} 
               </li>
             )
         })}

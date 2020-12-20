@@ -1,15 +1,18 @@
-import {useContext} from 'react'
+import {useContext,useEffect} from 'react'
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 // Layout
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
+import axios from 'axios';
+
 // Local
 import Context from './Context'
 import Channels from './Channels'
 import Channel from './Channel'
 import Welcome from './Welcome'
+import Settings from './Settings'
 import {
   Route,
   Switch,
@@ -31,20 +34,60 @@ const useStyles = (theme) => ({
   drawerVisible: {
     display: 'block',
   },
+  new:{
+    height:'30px',
+    float:'right'
+  }
 })
 
 export default () => {
   const {
     currentChannel,
+    oauth,
     drawerVisible,
+    tet,
+    settet,
+    allUsers,
+    setallUsers,
+    setCurrentCUser,
+    currentCUser
   } = useContext(Context)
   const theme = useTheme()
   const styles = useStyles(theme)
   const alwaysOpen = useMediaQuery(theme.breakpoints.up('sm'))
   const isDrawerVisible = alwaysOpen || drawerVisible
+
+
+  useEffect( () => {
+    const fetch = async () => {
+      try{
+        const {data: users} = await axios.get('http://localhost:3001/users')
+        setallUsers(users)
+        var a=0
+        var i=0
+        if(allUsers!==undefined)
+        for(i=0;i<allUsers.length;i++)
+        {
+          if(allUsers[i].email===oauth.email)
+          {
+            a=1
+            setCurrentCUser(allUsers[i])
+          }
+        }
+        settet(a)
+      }catch(err){
+        console.error(err)
+      }
+    }
+    fetch()
+  }, [setallUsers,allUsers,settet,tet,oauth,setCurrentCUser,currentCUser])
   return (
-    <main css={styles.root}>
-      <Drawer
+
+    tet===0?<main>
+    <Welcome/></main>
+    :<main css={styles.root}>
+      {
+        <Drawer
         PaperProps={{ style: { position: 'relative' } }}
         BackdropProps={{ style: { position: 'relative' } }}
         ModalProps={{
@@ -55,13 +98,13 @@ export default () => {
         css={[styles.drawer, isDrawerVisible && styles.drawerVisible]}
       >
         <Channels />
-      </Drawer>
+      </Drawer>}
       <Switch>
         <Route path="/channels/:id">
           <Channel />
         </Route>
-        <Route path="/">
-          <Welcome />
+        <Route path="/">      
+         <Settings/>              
         </Route>
       </Switch>
     </main>

@@ -13,6 +13,10 @@ import Context from './Context'
 import {
   useHistory
 } from "react-router-dom";
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Lampe from './icons/Lampe.jpg';
 
 const base64URLEncode = (str) => {
   return str.toString('base64')
@@ -32,6 +36,11 @@ const useStyles = (theme) => ({
   root: {
     flex: '1 1 auto',
     background: theme.palette.background.default,
+    backgroundImage: `url(${Lampe})`,
+    height: '100%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -47,6 +56,15 @@ const useStyles = (theme) => ({
         display: 'block',
       },
     },
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+  },
+  container: {
+    display: 'grid',
+    gridGap: theme.spacing(3),
+    alignItems: 'flex-end',
   },
 })
 
@@ -71,7 +89,17 @@ const Redirect = ({
   }
   return (
     <div css={styles.root}>
-      <Link onClick={redirect} color="secondary">Login with OpenID Connect and OAuth2</Link>
+      <Grid container css={styles.container} alignItems= "flex-end" spacing={5} >
+        <Grid item xs={4} alignItems= "flex-end"> </Grid>
+          <Grid item xs={4} >
+            <Paper css={styles.paper}>
+              <Button variant="outlined" color="primary" size="large">
+                <Link onClick={redirect} color="primary">Login with OpenID Connect and OAuth2</Link>
+              </Button>
+            </Paper>
+          </Grid>
+        <Grid item xs={4} ></Grid>
+      </Grid>
     </div>
   )
 }

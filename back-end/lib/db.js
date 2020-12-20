@@ -77,13 +77,22 @@ module.exports = {
         })
       })
     },
+    update: async (channelId, message) => {
+      if(!channelId) throw Error('Invalid channel')
+      if(!message.author) throw Error('Invalid message')
+      if(!message.content) throw Error('Invalid message')
+      await db.put(`messages:${channelId}:${message.creation}`, JSON.stringify({
+        author: message.author,
+        content: message.content
+      }))
+      return merge(message, {channelId: channelId, creation: message.creation})
+    },
   },
   users: {
     create: async (user) => {
       if(!user.username) throw Error('Invalid user')
-      const id = uuid()
-      await db.put(`users:${id}`, JSON.stringify(user))
-      return merge(user, {id: id})
+      await db.put(`users:${user.email}`, JSON.stringify(user))
+      return merge(user, {id: user.email})
     },
     get: async (id) => {
       if(!id) throw Error('Invalid id')
@@ -108,10 +117,9 @@ module.exports = {
         })
       })
     },
-    update: (id, user) => {
-      const original = store.users[id]
-      if(!original) throw Error('Unregistered user id')
-      store.users[id] = merge(original, user)
+    update: ( user) => {
+      db.put(`users:${user.email}`, JSON.stringify(user))
+      return merge(channel, {id: user.email})
     },
     delete: (id, user) => {
       const original = store.users[id]
