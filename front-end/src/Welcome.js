@@ -166,7 +166,7 @@ export default () => {
               </div>
             </div>
             <div css={styles.gravatarFormPart}>
-              <h4 css={styles.element}> Choose your Avatar among our own Selection : </h4>
+            <h4 css={styles.element}> Choose your Avatar among our own Selection (if none is good for you, enter 0): </h4>
               <div css={styles.element}>
                   <TextField  name="id_photo" id="outlined-textarea id_photo" className="E" label="Photo's id" placeholder="" multiline variant="outlined" required/>
               </div>
