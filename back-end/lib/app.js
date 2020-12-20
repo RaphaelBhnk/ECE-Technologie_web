@@ -52,6 +52,11 @@ app.post('/channels/:id/messages', async (req, res) => {
   res.status(201).json(message)
 })
 
+app.put('/channels/:id/messages', async (req, res) => {
+  const messages = await db.messages.update(req.params.id,req.body)
+  res.json(messages)
+})
+
 // Users
 
 app.get('/users', async (req, res) => {

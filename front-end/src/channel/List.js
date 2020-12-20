@@ -6,6 +6,7 @@ import Context from '../Context'
 import Button from '@material-ui/core/Button'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
+import Edit from './Edit'
 //Menu
 import React from 'react';
 import { TextField } from '@material-ui/core';
@@ -263,10 +264,12 @@ export default forwardRef(({
             .processSync(message.content)
             return (
               <li key={i} css={styles.message}>
-                {message.author ===  oauth.email ? <p css={styles.myMessage}>
+                {message.author ===  oauth.email ?<p css={styles.myMessage}>
+                
                     <span>{currentUser.username}</span>
                     {' - '}
                     <span>{dayjs().calendar(message.creation)}</span>
+                    
                   </p> 
                   : <p>
                   <span>{message.author}</span>
@@ -274,7 +277,9 @@ export default forwardRef(({
                   <span>{dayjs().calendar(message.creation)}</span>
                 </p>}
 
-                {message.author ===  oauth.email ? <div css={styles.myMessage} dangerouslySetInnerHTML={{__html: content}}>
+                {message.author ===  oauth.email ? <div><div><Edit messageCreation={message.creation} channel={channel}/>
+                <br></br>
+                </div><div css={styles.myMessage} dangerouslySetInnerHTML={{__html: content}}></div>
                   </div>
                   : <div dangerouslySetInnerHTML={{__html: content}}>
                   </div>} 

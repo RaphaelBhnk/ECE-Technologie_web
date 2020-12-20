@@ -77,6 +77,16 @@ module.exports = {
         })
       })
     },
+    update: async (channelId, message) => {
+      if(!channelId) throw Error('Invalid channel')
+      if(!message.author) throw Error('Invalid message')
+      if(!message.content) throw Error('Invalid message')
+      await db.put(`messages:${channelId}:${message.creation}`, JSON.stringify({
+        author: message.author,
+        content: message.content
+      }))
+      return merge(message, {channelId: channelId, creation: message.creation})
+    },
   },
   users: {
     create: async (user) => {
