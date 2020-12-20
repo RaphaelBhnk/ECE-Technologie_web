@@ -81,9 +81,8 @@ module.exports = {
   users: {
     create: async (user) => {
       if(!user.username) throw Error('Invalid user')
-      const id = uuid()
-      await db.put(`users:${id}`, JSON.stringify(user))
-      return merge(user, {id: id})
+      await db.put(`users:${user.email}`, JSON.stringify(user))
+      return merge(user, {id: user.email})
     },
     get: async (id) => {
       if(!id) throw Error('Invalid id')
@@ -108,10 +107,9 @@ module.exports = {
         })
       })
     },
-    update: (id, user) => {
-      const original = store.users[id]
-      if(!original) throw Error('Unregistered user id')
-      store.users[id] = merge(original, user)
+    update: ( user) => {
+      db.put(`users:${user.email}`, JSON.stringify(user))
+      return merge(channel, {id: user.email})
     },
     delete: (id, user) => {
       const original = store.users[id]

@@ -1,6 +1,6 @@
-
 import React, {useState} from 'react'
 import { useCookies } from 'react-cookie'
+import axios from 'axios';
 
 const Context = React.createContext()
 
@@ -14,6 +14,17 @@ export const Provider = ({
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [channels, setChannels] = useState([])
   const [currentChannel, setCurrentChannel] = useState(null)
+  const [allUsers, setallUsers] = useState()
+  const [tet, settet] = useState(1)
+  const [currentUser,setCurrentCUser]=useState(1)
+  const test = async()=>{
+    try {
+      const {data: users} = await axios.get('http://localhost:3001/users')
+      setallUsers(users)
+    } catch (error) {    
+    }
+    }
+    const [teta, setteta] = useState(test)
   return (
     <Context.Provider value={{
       oauth: oauth,
@@ -33,6 +44,12 @@ export const Provider = ({
         }
         setOauth(oauth)
       },
+      currentUser:currentUser,
+      setCurrentCUser:setCurrentCUser,
+      tet:tet,
+      settet:settet,
+      allUsers:allUsers,
+      setallUsers:setallUsers,
       channels: channels,
       drawerVisible: drawerVisible,
       setDrawerVisible: setDrawerVisible,
