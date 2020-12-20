@@ -73,18 +73,18 @@ export default ({
       
       {
         oauth ?
-          <span>
-            <span css={styles.info_perso}>
-              <Gravatar email={oauth.email} size={35} default='identicon' />
-              {oauth.email}
-            </span>
+        <span>
+          <span css={styles.info_perso}>
+                  <Gravatar email={oauth.email} size={35} default='identicon' />
+                  {oauth.email}
+                </span>
             <span css={styles.out}>
               <SettingsIcon onClick={onClickGoToWelcome} fontSize="large" color="primary"></SettingsIcon>
               <ExitToAppIcon onClick={onClickLogout} fontSize="large" color="primary">logout</ExitToAppIcon>
             </span >
           </span>
         :
-          <span>new user</span>
+          <span><center>Welcome !</center></span>
       }
       
     </header>

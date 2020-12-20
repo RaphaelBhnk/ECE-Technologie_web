@@ -108,6 +108,7 @@ export default forwardRef(({
   const {
     oauth,
      setChannels,
+     currentUser,
      channels
   } = useContext(Context)
   const rootEl = useRef(null)
@@ -263,7 +264,7 @@ export default forwardRef(({
             return (
               <li key={i} css={styles.message}>
                 {message.author ===  oauth.email ? <p css={styles.myMessage}>
-                    <span>{message.author}</span>
+                    <span>{currentUser.username}</span>
                     {' - '}
                     <span>{dayjs().calendar(message.creation)}</span>
                   </p> 

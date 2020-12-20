@@ -4,7 +4,8 @@ import { jsx } from '@emotion/core'
 
 const styles = {
   footer: {
-    height: '30px',
+    padding: '8px',
+    height: '20px',
     backgroundColor: 'rgba(255,255,255,.3)',
     flexShrink: 0,
   },
@@ -13,7 +14,9 @@ const styles = {
 export default () => {
   return (
     <footer style={styles.footer}>
-      footer
+      <center>
+        Authors : Raphael BOUHNIK & Adrien ZYCHOWKSI
+      </center>
     </footer>
   );
 }
